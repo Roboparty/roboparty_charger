@@ -1,4 +1,9 @@
 
+
+// SPDX-License-Identifier: GPL-3.0
+// Copyright (C) 2026 zz020
+
+
 #include "main.h"
 
 #include "ch224.h"

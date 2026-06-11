@@ -1,3 +1,7 @@
+
+// SPDX-License-Identifier: GPL-3.0
+// Copyright (C) 2026 zz020
+
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -141,8 +145,17 @@ void EnvSecureOp()
         
         OLED_Clear();
         OLED_ShowString(0, 0, (uint8_t*)"Exception!", 16);
-        OLED_ShowString(0, 2, (uint8_t*)"L-Press to EXIT!", 16);
-
+        OLED_ShowString(0, 2, (uint8_t*)"SoC:", 16);
+        OLED_ShowString(32, 2, (uint8_t*)strBmsSoc, 16);
+        
+        sprintf(str_chrg_i, "CI:%-3.1fA", CHRG_I);
+        sprintf(str_chrg_v, "CV:%-4.1fV", CHRG_V);
+        sprintf(str_bat_v, "BV:%-4.1fV", BAT_V);
+        sprintf(strTemp, "T:%-4.1f", temp);
+        OLED_ShowString(0, 4, (uint8_t*)str_chrg_v, 16);
+        OLED_ShowString(72, 4, (uint8_t*)str_chrg_i, 16);
+        OLED_ShowString(0, 6, (uint8_t*)str_bat_v, 16);
+        OLED_ShowString(72, 6, (uint8_t*)strTemp, 16);
     }
 }
 
