@@ -265,15 +265,12 @@ int main(void)
 //	CH224_ReadAdaptorInfo(adaptInfo);
 //	printf("AdaptInfo: %s\n", adaptInfo);
 	CH224_I2C_Status * ch224_status = malloc(sizeof(CH224_I2C_Status));
-	CH224_ReadAVS(&avs_volt);
 //	CH224_ReadStatus(&voltage_status, ch224_status);
 
 	float Max_I = 0;//ch224_status->Max_I * 0.05f;//50mA Unit
-	float AVS_V = 0;//avs_volt * 0.1f;
 	if (CH224_ReadStatus(&voltage_status, ch224_status) == 0)
 	{
 		Max_I = ch224_status->Max_I * 0.05f;//50mA Unit
-		AVS_V = avs_volt * 0.1f;
 	}
 	else
 	{
@@ -329,6 +326,7 @@ int main(void)
                 mid_chrg_volt += CHRG_V;
                 temp = TMP100_GetTemperature();
                 
+                pEnvSecure->estimate_pre_chrg_volt = pEnvSecure->estimate_chrg_volt;////update previous charge volt
                 pEnvSecure->estimate_bat_volt = mid_bat_volt / 3;
                 pEnvSecure->estimate_chrg_current = mid_chrg_current / 3;
                 pEnvSecure->estimate_chrg_volt = mid_chrg_volt / 3;
@@ -337,6 +335,9 @@ int main(void)
                 mid_chrg_current = 0.0f;
                 mid_chrg_volt = 0.0f;
                 mid_temp = 0.0f;
+                
+//                if(pEnvSecure->estimate_chrg_volt <= 5.5)//pEnvSecure->estimate_pre_chrg_volt > 5.5 && 
+                CH224_ReRequestPPS();
             }
             else
             {
@@ -364,14 +365,12 @@ int main(void)
         else
             g_config.fan = 0;
         
-        CH224_ReadAVS(&avs_volt);
-        AVS_V = avs_volt * 0.1f;
         Max_I = CH224_ReadCurrent() * 0.05f;
         
 //        printf("pEnvSecure->exception:%d", pEnvSecure->exception);
         if(CHRG_V >= 16.0f && BAT_INST && IR_REC && pEnvSecure->exception == 0)
         {
-            g_config.ictrl = Max_I / 5.0f * 66 ;//70->5A, 0.95->0.95* 70 ;
+            g_config.ictrl = Max_I / 5.0f * 70;//70->5A, 66->4.7A, 0.95->0.95* 70 ;
             g_config.chg_en = 1;
         }
         else

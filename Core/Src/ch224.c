@@ -82,3 +82,12 @@ void CH224_ReadAdaptorInfo(uint8_t * adaptInfo)
 		I2C_ReadData(CH224_ADDR, adaptInfo, 0x30);
 }
 
+uint8_t CH224_ReRequestPPS(void)
+{
+    uint8_t status = 0;
+
+    status = I2C_WriteReg(CH224_ADDR, 0x0A, 0x05);
+    if (status) return 1;
+
+    return 0;
+}

@@ -90,6 +90,7 @@ typedef struct
     float estimate_chrg_volt;
     float estimate_chrg_current;
     float estimate_bat_volt;
+    float estimate_pre_chrg_volt;
     uint8_t exception;
 }env_secure_t;
 
