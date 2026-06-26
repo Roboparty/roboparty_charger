@@ -281,7 +281,7 @@ int main(void)
     OLED_DrawBMP(0, 0, 128, 8, gImage_SUM_INFO);
     uint8_t i_retry = 0;
     
-    if(BAT_INST && IR_REC && CHRG_V >= 4.0f)
+    if(BAT_INST && CHRG_V >= 4.0f)// && IR_REC
     {
         if(ReadBMS_SOC(BmsSoc))
             BMS_COM_ERR = 1;        
@@ -368,7 +368,7 @@ int main(void)
         Max_I = CH224_ReadCurrent() * 0.05f;
         
 //        printf("pEnvSecure->exception:%d", pEnvSecure->exception);
-        if(CHRG_V >= 16.0f && BAT_INST && IR_REC && pEnvSecure->exception == 0)
+        if(CHRG_V >= 16.0f && BAT_INST && pEnvSecure->exception == 0)// && IR_REC
         {
             g_config.ictrl = Max_I / 5.0f * 70;//70->5A, 66->4.7A, 0.95->0.95* 70 ;
             g_config.chg_en = 1;
@@ -389,7 +389,7 @@ int main(void)
 
         ApplyConfig();
         
-        if(BAT_INST && IR_REC && CHRG_V >= 4.0f)// && BMS_COM_ERR == 0
+        if(BAT_INST && CHRG_V >= 4.0f)// && IR_REC && BMS_COM_ERR == 0
         {
             if(ReadBMS_SOC(BmsSoc) == 0)
                 sprintf(strBmsSoc, "%d", BmsSoc[0]);
