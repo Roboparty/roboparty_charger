@@ -26,7 +26,6 @@ chargebat/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
   ..\Core\Inc\adc.h ..\Core\Inc\dma.h ..\Core\Inc\spi.h \
   ..\Core\Inc\tim.h ..\Core\Inc\usart.h ..\Core\Inc\gpio.h \
-  ..\Core\Inc\logo_128x64.h ..\Core\Inc\i2c_soft.h ..\Core\Inc\ch224.h \
-  ..\Core\Inc\oled.h ..\Core\Inc\tmp100.h ..\Core\Inc\parse_command.h \
-  ..\Core\Inc\key.h ..\Core\Inc\tws_bms.h \
+  ..\Core\Inc\i2c_soft.h ..\Core\Inc\tmp100.h \
+  ..\Core\Inc\parse_command.h ..\Core\Inc\tws_bms.h \
   ..\Core\Inc\spi_flash_w25q128.h

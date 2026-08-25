@@ -57,26 +57,22 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define BUZZER_Pin GPIO_PIN_4
-#define BUZZER_GPIO_Port GPIOA
-#define KEY1_Pin GPIO_PIN_5
-#define KEY1_GPIO_Port GPIOA
-//#define KEY2_Pin GPIO_PIN_5
-//#define KEY2_GPIO_Port GPIOA
-//#define OLED_I2C_SCL_Pin GPIO_PIN_1
-//#define OLED_I2C_SCL_GPIO_Port GPIOB
-//#define OLED_I2C_SDA_Pin GPIO_PIN_2
-//#define OLED_I2C_SDA_GPIO_Port GPIOB
+#define GREEN_LED_Pin GPIO_PIN_3
+//#define GREEN_LED_GPIO_Port GPIOA
+//#define BUZZER_Pin GPIO_PIN_4
+//#define BUZZER_GPIO_Port GPIOA
+#define RED_LED_Pin GPIO_PIN_4
+//#define RED_LED_GPIO_Port GPIOA
+
+#define LED_GPIO_Port GPIOA
+
+
 #define SPI2_NSS_Pin GPIO_PIN_12
 #define SPI2_NSS_GPIO_Port GPIOB
 #define Charge_EN_Pin GPIO_PIN_3
 #define Charge_EN_GPIO_Port GPIOB
 #define BAT_INST_Pin GPIO_PIN_4
 #define BAT_INST_GPIO_Port GPIOB
-#define IR_REC_Pin GPIO_PIN_6
-#define IR_REC_GPIO_Port GPIOB
-#define IR_EM_Pin GPIO_PIN_7
-#define IR_EM_GPIO_Port GPIOB
 #define I2C_SCL_Pin GPIO_PIN_8
 #define I2C_SCL_GPIO_Port GPIOB
 #define I2C_SDA_Pin GPIO_PIN_9
@@ -96,7 +92,7 @@ typedef struct
 
 extern env_secure_t * pEnvSecure;
 extern float CHRG_I, CHRG_V, BAT_V;
-extern uint8_t BAT_INST, IR_REC;
+extern uint8_t BAT_INST;
 
 /* USER CODE END Private defines */
 

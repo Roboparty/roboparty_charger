@@ -93,13 +93,11 @@ void UpdateConfigFromCommand(const char *cmd_name, int value)
 
 void ApplyConfig(void)
 {
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, (g_config.r * 500) / 100);
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, (g_config.g * 500) / 100);
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, (g_config.b * 500) / 100);
+    /* FAN PWM control via TIM1 CH1 (PA8) */
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, (g_config.fan * 99) / 100);
 
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, (g_config.ictrl * 7200) / 100);
-    HAL_GPIO_WritePin(Charge_EN_GPIO_Port, Charge_EN_Pin, 
+    /* Charge enable control */
+    HAL_GPIO_WritePin(Charge_EN_GPIO_Port, Charge_EN_Pin,
                       g_config.chg_en ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
 
@@ -164,7 +162,6 @@ void parse_command(const uint8_t *cmd, uint16_t len)
             printf("SW_DATE:%.12s;", g_config.str_sw_date);
             printf("R:%d;G:%d;B:%d;FAN:%d;", g_config.r, g_config.g, g_config.b, g_config.fan);
             printf("BAT_INST:%d;", BAT_INST);
-            printf("IR_REC:%d;", IR_REC);
             printf("CHRG_V:%.1fV;", CHRG_V);
             printf("CHRG_I:%.1fA;", CHRG_I);
             printf("BAT_V:%.1fV;", BAT_V);
@@ -187,10 +184,6 @@ void parse_command(const uint8_t *cmd, uint16_t len)
         else if (strcmp(cmd_name, "BAT_INST") == 0)
         {
             printf("BAT_INST:%d", BAT_INST);
-        }
-        else if (strcmp(cmd_name, "IR_REC") == 0)
-        {
-            printf("IR_REC:%d", IR_REC);
         }
         else if (strcmp(cmd_name, "BAT_SOC") == 0)
         {

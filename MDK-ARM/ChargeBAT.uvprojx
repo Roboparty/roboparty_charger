@@ -502,16 +502,6 @@
               <FilePath>..\Core\Src\tmp100.c</FilePath>
             </File>
             <File>
-              <FileName>ch224.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\ch224.c</FilePath>
-            </File>
-            <File>
-              <FileName>oled.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\oled.c</FilePath>
-            </File>
-            <File>
               <FileName>i2c_soft.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\i2c_soft.c</FilePath>
@@ -520,11 +510,6 @@
               <FileName>parse_command.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\parse_command.c</FilePath>
-            </File>
-            <File>
-              <FileName>key.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\key.c</FilePath>
             </File>
             <File>
               <FileName>tws_bms.c</FileName>
